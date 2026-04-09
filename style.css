@@ -1,0 +1,295 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #f0f2f5;
+  color: #333;
+}
+
+/* --- Main Wrapper --- */
+.gallery-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+/* --- Typography --- */
+.gallery-wrapper h1.heading {
+  font-size: 2.8rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+  line-height: 1;
+  padding-bottom: 10px;
+  background: linear-gradient(90deg, #007bff, #00d2ff);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
+/* --- Filter Buttons --- */
+.filter-container {
+  margin: 30px 0 40px;
+  display: flex;
+  flex-wrap: wrap; /* Allows buttons to wrap on small screens */
+  justify-content: center;
+  gap: 12px;
+}
+
+.filter-container button {
+  padding: 10px 28px;
+  border: none;
+  background: white;
+  color: #555;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 50px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.filter-container button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 123, 255, 0.2);
+}
+
+.filter-container button.active {
+  background: #007bff;
+  color: white;
+  box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
+}
+
+/* --- Grid Container --- */
+.grid-container {
+  display: grid;
+  /* Automatically adjusts columns based on screen size */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+/* --- Gallery Items (Cards) --- */
+.grid-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  cursor: pointer;
+  background: white;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.grid-item img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+/* Hover Effects */
+.grid-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.grid-item:hover img {
+  transform: scale(1.08);
+}
+
+/* Glassmorphism Overlay */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(3px); /* Glass effect */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.grid-item:hover .overlay {
+  opacity: 1;
+}
+
+.overlay span {
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 600;
+  border: 2px solid white;
+  padding: 10px 24px;
+  border-radius: 30px;
+  transform: translateY(20px);
+  transition: transform 0.4s ease;
+}
+
+.grid-item:hover .overlay span {
+  transform: translateY(0);
+}
+
+/* --- Lightbox Styles --- */
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px); /* Modern Glassmorphism background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.lightbox-content {
+  position: relative;
+}
+
+.lightbox-content img {
+  max-width: 85vw;
+  max-height: 85vh;
+  border-radius: 12px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  object-fit: contain;
+}
+
+/* --- Navigation Buttons --- */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.prev-btn {
+  left: 30px;
+}
+.next-btn {
+  right: 30px;
+}
+
+.close-x {
+  position: absolute;
+  top: 25px;
+  right: 40px;
+  color: white;
+  font-size: 3rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    color 0.3s,
+    transform 0.3s;
+}
+
+.close-x:hover {
+  color: #ff4757;
+  transform: rotate(90deg);
+}
+
+/* =========================================
+   Media Queries (Responsive Design) 
+   ========================================= */
+
+/* Tablet & Smaller Screens */
+@media (max-width: 768px) {
+  .gallery-wrapper h1.heading {
+    font-size: 2.2rem;
+  }
+
+  .filter-container button {
+    padding: 8px 20px;
+    font-size: 0.9rem;
+  }
+
+  .nav-btn {
+    width: 45px;
+    height: 45px;
+    font-size: 1.5rem;
+  }
+
+  .prev-btn {
+    left: 15px;
+  }
+  .next-btn {
+    right: 15px;
+  }
+
+  .close-x {
+    top: 15px;
+    right: 25px;
+    font-size: 2.5rem;
+  }
+}
+
+/* Mobile Screens */
+@media (max-width: 480px) {
+  .gallery-wrapper h1.heading {
+    font-size: 1.8rem;
+  }
+
+  .gallery-wrapper {
+    padding: 20px 15px;
+  }
+
+  .grid-container {
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(100%, 1fr)
+    ); /* 1 column on mobile */
+    gap: 20px;
+  }
+
+  .grid-item img {
+    height: 220px;
+  }
+
+  .lightbox-content img {
+    max-width: 95vw;
+  }
+
+  /* Move navigation buttons to the bottom for easier thumb reach on mobile */
+  .nav-btn {
+    top: auto;
+    bottom: 30px;
+    transform: none;
+  }
+
+  .nav-btn:hover {
+    transform: scale(1.1);
+  }
+
+  .prev-btn {
+    left: 25%;
+  }
+  .next-btn {
+    right: 25%;
+  }
+}

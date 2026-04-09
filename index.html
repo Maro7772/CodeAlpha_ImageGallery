@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodeAlpha Image Gallery</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="gallery-wrapper">
+      <h1 class="heading">CodeAlpha Image Gallery</h1>
+
+      <div class="filter-container">
+        <button class="filter-btn active" data-filter="all">ALL</button>
+        <button class="filter-btn" data-filter="nature">NATURE</button>
+        <button class="filter-btn" data-filter="tech">TECH</button>
+      </div>
+
+      <div class="grid-container" id="grid-container"></div>
+
+      <div class="lightbox-overlay" id="lightbox">
+        <span class="close-x" id="close-btn">&times;</span>
+        <button class="nav-btn prev-btn" id="prev-btn">&#10094;</button>
+        <div class="lightbox-content">
+          <img src="" alt="Full View" id="lightbox-img" />
+        </div>
+        <button class="nav-btn next-btn" id="next-btn">&#10095;</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
